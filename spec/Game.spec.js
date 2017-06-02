@@ -54,19 +54,13 @@ describe('A new game', function() {
         });
     });
 
-    /*
-    describe('with three Os in a horizontal row', function() {
+    describe('that has the board set', function() {
         before(function(){
             game = new Game();
+            game.setBoard('OOO');
         });
-        it ('should have O as the winner on any of the horz lines', function() {
-            for (let x = 1; x=<3; x++) {
-                game.placePiece(x,1); // O
-                game.placePiece(x,2); // X
-                expect(game.hasWinner()).to.equal('O');
-            }
+        it ('should match the board', function() {
         });
     });
-    */
 });
 
