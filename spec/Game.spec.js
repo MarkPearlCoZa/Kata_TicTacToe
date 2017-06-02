@@ -54,13 +54,47 @@ describe('A new game', function() {
         });
     });
 
-    describe('that has the board set', function() {
+    describe('with the the board set with 3 horizontal Os', function() {
         before(function(){
             game = new Game();
-            game.setBoard('OOO');
+            game.placePieceTypeAt('O',1,1);
+            game.placePieceTypeAt('O',2,1);
+            game.placePieceTypeAt('O',3,1);
         });
         it ('should match the board', function() {
+            expect(game.pieceAt(1,1)).to.equal('O');
+            expect(game.pieceAt(2,1)).to.equal('O');
+            expect(game.pieceAt(3,1)).to.equal('O');
         });
+        it ('should have 3 pieces on the board', function() {
+            expect(game.placedPieces()).to.equal(3);
+        });
+        it ('should have a winner of O', function() {
+            expect(game.hasWinner()).to.equal('O');
+        })
+    });
+
+    describe('with different winning scenarios', function() {
+        beforeEach(function(){
+            game = new Game();
+        });
+        it ('should win on the horizontal on each line with three Os', function() {
+            for (let y = 1; y<=3; y++) {
+                game.placePieceTypeAt('O',1,y);
+                game.placePieceTypeAt('O',2,y);
+                game.placePieceTypeAt('O',3,y);
+                expect(game.hasWinner()).to.equal('O');
+            }
+        });
+        it ('should win on the horizontal on each line with three Xs', function() {
+            for (let y = 1; y<=3; y++) {
+                game.placePieceTypeAt('X',1,y);
+                game.placePieceTypeAt('X',2,y);
+                game.placePieceTypeAt('X',3,y);
+                expect(game.hasWinner()).to.equal('X');
+            }
+        });
+        
     });
 });
 
