@@ -54,6 +54,26 @@ describe('A new game', function() {
         });
     });
 
+    describe('with the the board set with 3 vertical Os', function() {
+        before(function(){
+            game = new Game();
+            game.placePieceTypeAt('O',1,1);
+            game.placePieceTypeAt('O',1,2);
+            game.placePieceTypeAt('O',1,3);
+        });
+        it ('should match the board', function() {
+            expect(game.pieceAt(1,1)).to.equal('O');
+            expect(game.pieceAt(1,2)).to.equal('O');
+            expect(game.pieceAt(1,3)).to.equal('O');
+        });
+        it ('should have 3 pieces on the board', function() {
+            expect(game.placedPieces()).to.equal(3);
+        });
+        it ('should have a winner of O', function() {
+            expect(game.hasWinner()).to.equal('O');
+        })
+    });
+
     describe('with the the board set with 3 horizontal Os', function() {
         before(function(){
             game = new Game();
@@ -79,23 +99,26 @@ describe('A new game', function() {
         beforeEach(function(){
             game = new Game();
         });
-        it ('should win on the horizontal on each line with three Os', function() {
-            for (let y = 1; y<=3; y++) {
-                game.placePieceTypeAt('O',1,y);
-                game.placePieceTypeAt('O',2,y);
-                game.placePieceTypeAt('O',3,y);
-                expect(game.hasWinner()).to.equal('O');
-            }
+        ['X','O'].map(element => {
+            it (`should win on the horizontal on each line with three ${element}s`, function() {
+                for (let y = 1; y<=3; y++) {
+                    game.placePieceTypeAt(element,1,y);
+                    game.placePieceTypeAt(element,2,y);
+                    game.placePieceTypeAt(element,3,y);
+                    expect(game.hasWinner()).to.equal(element);
+                }
+            });
         });
-        it ('should win on the horizontal on each line with three Xs', function() {
-            for (let y = 1; y<=3; y++) {
-                game.placePieceTypeAt('X',1,y);
-                game.placePieceTypeAt('X',2,y);
-                game.placePieceTypeAt('X',3,y);
-                expect(game.hasWinner()).to.equal('X');
-            }
+        ['X','O'].map(element => {
+            it (`should win on the vertical on each line with three ${element}s`, function() {
+                for (let x = 1; x<=3; x++) {
+                    game.placePieceTypeAt(element,x,1);
+                    game.placePieceTypeAt(element,x,2);
+                    game.placePieceTypeAt(element,x,3);
+                    expect(game.hasWinner()).to.equal(element);
+                }
+            });
         });
-        
     });
 */
 });
