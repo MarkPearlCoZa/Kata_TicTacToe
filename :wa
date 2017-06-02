@@ -14,12 +14,11 @@ let playerBasedOnPiecesPlaced = function(piecesPlaced) {
     return (piecesPlaced % 2 === 0) ? 'O' : 'X';
 }
 
-Game.prototype.placedPieces = function() {
-    let placed = this.board.reduce((element, total)  => {
-        if (element == undefined) return total;
-        return total + 1;
-    }, 0);
-    return placed;
+let placedPieces = function() {
+    return this.board.reduce((e, t)  => {
+        if (e == undefined) return t;
+        return t + 1;
+    });
 }
 
 Game.prototype.placePiece = function(x,y) {
@@ -28,8 +27,9 @@ Game.prototype.placePiece = function(x,y) {
         throw new TypeError('Piece already placed there!');
     }
 
-    let piece = playerBasedOnPiecesPlaced(this.placedPieces());
+    let piece = playerBasedOnPiecesPlaced(this.placedPiecesCount);
     this.board[index] = piece;
+    this.placedPiecesCount++;
 }
 
 Game.prototype.hasWinner = function() {  
@@ -42,7 +42,7 @@ Game.prototype.setBoard = function(piecePlacements) {
 }
 
 Game.prototype.currentPlayer = function() {
-    return playerBasedOnPiecesPlaced(this.placedPieces());
+    return playerBasedOnPiecesPlaced(this.placedPiecesCount);
 }
 
 Game.prototype.nextPlayer = function() {

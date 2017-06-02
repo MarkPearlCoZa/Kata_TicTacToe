@@ -58,14 +58,13 @@ describe('A new game', function() {
     describe('with three Os in a horizontal row', function() {
         before(function(){
             game = new Game();
-            game.placePiece(1,1); // O
-            game.placePiece(1,2); // X
-            game.placePiece(2,1); // O
-            game.placePiece(2,2); // X
-            game.placePiece(3,1); // O
         });
-        it ('should have a winner', function() {
-            expect(game.hasWinner()).to.equal(false);
+        it ('should have O as the winner on any of the horz lines', function() {
+            for (let x = 1; x=<3; x++) {
+                game.placePiece(x,1); // O
+                game.placePiece(x,2); // X
+                expect(game.hasWinner()).to.equal('O');
+            }
         });
     });
     */
