@@ -74,6 +74,7 @@ describe('A new game', function() {
         })
     });
 
+/*
     describe('with different winning scenarios', function() {
         beforeEach(function(){
             game = new Game();
@@ -96,5 +97,6 @@ describe('A new game', function() {
         });
         
     });
+*/
 });
 
