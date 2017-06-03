@@ -37,23 +37,6 @@ describe('A new game', function() {
         });
     });
 
-    describe('with two pieces placed at 1,1 and 2,1', function() {
-        before(function(){
-            game = new Game();
-            game.placePiece(1,1);
-            game.placePiece(2,1);
-        });
-        it ('should have the O piece at 1,1', function() {
-            expect(game.pieceAt(1,1)).to.equal('O');
-        });
-        it ('should have the X piece at 2,1', function() {
-            expect(game.pieceAt(2,1)).to.equal('X');
-        });
-        it ('should not have a winner', function() {
-            expect(game.hasWinner()).to.equal(false);
-        });
-    });
-
     describe('with the the board set with 3 vertical Os', function() {
         before(function(){
             game = new Game();
@@ -94,44 +77,5 @@ describe('A new game', function() {
         })
     });
 
-    describe('with the the board set with 3 forward diagonal Os', function() {
-        before(function(){
-            game = new Game();
-            game.placePieceTypeAt('O',1,1);
-            game.placePieceTypeAt('O',2,2);
-            game.placePieceTypeAt('O',3,3);
-        });
-        it ('should match the board', function() {
-            expect(game.pieceAt(1,1)).to.equal('O');
-            expect(game.pieceAt(2,2)).to.equal('O');
-            expect(game.pieceAt(3,3)).to.equal('O');
-        });
-        it ('should have 3 pieces on the board', function() {
-            expect(game.placedPieces()).to.equal(3);
-        });
-        it ('should have a winner of O', function() {
-            expect(game.hasWinner()).to.equal('O');
-        })
-    });
-
-    describe('with the the board set with 3 backward diagonal Os', function() {
-        before(function(){
-            game = new Game();
-            game.placePieceTypeAt('O',1,3);
-            game.placePieceTypeAt('O',2,2);
-            game.placePieceTypeAt('O',3,1);
-        });
-        it ('should match the board', function() {
-            expect(game.pieceAt(1,3)).to.equal('O');
-            expect(game.pieceAt(2,2)).to.equal('O');
-            expect(game.pieceAt(3,1)).to.equal('O');
-        });
-        it ('should have 3 pieces on the board', function() {
-            expect(game.placedPieces()).to.equal(3);
-        });
-        it ('should have a winner of O', function() {
-            expect(game.hasWinner()).to.equal('O');
-        })
-    });
 });
 
