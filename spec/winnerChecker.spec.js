@@ -1,6 +1,6 @@
 const chai = require('chai');
 const expect = chai.expect;
-const WinnerChecker = require('../lib/winnerChecker.js');
+const WinnerChecker = require('../lib/gameEngine/winnerChecker.js');
 
 describe('Checking winning scenarios on a 3x3 board', function() {
     let checker;
