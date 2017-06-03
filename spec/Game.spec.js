@@ -21,7 +21,7 @@ describe('A new game', function() {
         });
     });
 
-    describe('with a single piece placed at 1,1', function() {
+    describe('with a single piece placed', function() {
         before(function(){
             game = new Game();
             game.placePiece(1,1);
@@ -32,50 +32,9 @@ describe('A new game', function() {
         it ('should not have a winner', function() {
             expect(game.hasWinner()).to.equal(false);
         });
-        it ('should throw exception if you try and place a piece again at 1,1', function(){
+        it ('should throw exception if you try and place a piece again on top of it', function(){
             expect(() => game.placePiece(1,1)).to.throw('Piece already placed there!');
         });
     });
-
-    describe('with the the board set with 3 vertical Os', function() {
-        before(function(){
-            game = new Game();
-            game.placePieceTypeAt('O',1,1);
-            game.placePieceTypeAt('O',1,2);
-            game.placePieceTypeAt('O',1,3);
-        });
-        it ('should match the board', function() {
-            expect(game.pieceAt(1,1)).to.equal('O');
-            expect(game.pieceAt(1,2)).to.equal('O');
-            expect(game.pieceAt(1,3)).to.equal('O');
-        });
-        it ('should have 3 pieces on the board', function() {
-            expect(game.placedPieces()).to.equal(3);
-        });
-        it ('should have a winner of O', function() {
-            expect(game.hasWinner()).to.equal('O');
-        })
-    });
-
-    describe('with the the board set with 3 horizontal Os', function() {
-        before(function(){
-            game = new Game();
-            game.placePieceTypeAt('O',1,1);
-            game.placePieceTypeAt('O',2,1);
-            game.placePieceTypeAt('O',3,1);
-        });
-        it ('should match the board', function() {
-            expect(game.pieceAt(1,1)).to.equal('O');
-            expect(game.pieceAt(2,1)).to.equal('O');
-            expect(game.pieceAt(3,1)).to.equal('O');
-        });
-        it ('should have 3 pieces on the board', function() {
-            expect(game.placedPieces()).to.equal(3);
-        });
-        it ('should have a winner of O', function() {
-            expect(game.hasWinner()).to.equal('O');
-        })
-    });
-
 });
 
