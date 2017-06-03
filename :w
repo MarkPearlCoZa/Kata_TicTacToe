@@ -59,16 +59,6 @@ Game.prototype.placePiece = function(x,y) {
     this.placePieceTypeAt(piece,x,y);
 }
 
-Game.prototype.hasWinnerOnDiagonal = function() {
-    let winner = false;
-        let backwardDiagLine = getBackwardDiagonalLine(x, this.board);
-        if (backwardDiagLine === 'OOO') winner = 'O';
-        if (backwardDiagLine === 'XXX') winner = 'X';
-        if (winner) return;
-    });
-    return winner;
-}
-
 Game.prototype.hasWinnerOnVertical = function() {
     let winner = false;
     [1, 2, 3].map(x => {
